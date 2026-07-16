@@ -29,6 +29,7 @@ public class QueueLab {
         System.out.println("1. Setting up the customer service queue...");
         
         // TODO: Create a Queue of String called customerQueue, use LinkedList class as the implementation
+        Queue<String> customerQueue = new LinkedList<>();
         
         System.out.println("   Queue created successfully!");
         System.out.println("   Queue size: " + customerQueue.size());
@@ -45,6 +46,11 @@ public class QueueLab {
         // Customer 4: "Diana"
         // Customer 5: "Eve"
         
+        customerQueue.offer("Alice");
+        customerQueue.offer("Bob");
+        customerQueue.offer("Charlie");
+        customerQueue.offer("Diana");
+        customerQueue.offer("Eve");
         System.out.println("   Customers added to queue!");
         System.out.println("   Queue size: " + customerQueue.size());
         System.out.println("   Current queue: " + customerQueue);
@@ -54,6 +60,7 @@ public class QueueLab {
         System.out.println("3. Checking who's next in line...");
         
         // TODO: Use peek() method to see who's next in line, store in String variable called nextCustomer
+        String nextCustomer = customerQueue.peek();
         
         System.out.println("   Next customer to be served: " + nextCustomer);
         System.out.println("   Queue after peek: " + customerQueue); //showing that the queue didn't change
@@ -66,7 +73,7 @@ public class QueueLab {
         
         // TODO: Use poll() method to serve the first customer, print the result
         // Format: "   Serving customer: " + [result of poll()]
-        
+        System.out.println("   Serving customer: " + customerQueue.poll());
         
         // printing the queue state and size
         System.out.println("   Queue after serving the first customer: " + customerQueue);
@@ -76,6 +83,7 @@ public class QueueLab {
         System.out.println();
         
         // TODO: Serve another customer using poll(), print the result and queue state
+        System.out.println("   Serving customer: " + customerQueue.poll());
         
         System.out.println();
         
@@ -86,6 +94,8 @@ public class QueueLab {
         // Customer 6: "Frank"
         // Customer 7: "Grace"
         
+        customerQueue.offer("Frank");
+        customerQueue.offer("Grace");
         System.out.println("   New customers added!");
         System.out.println("   Updated queue: " + customerQueue);
         System.out.println("   Queue size: " + customerQueue.size());
@@ -99,6 +109,13 @@ public class QueueLab {
         // "   Serving: " + [customer name]
         // "   Remaining in queue: " + [queue size]
         
+        while (!customerQueue.isEmpty()) {
+    String customer = customerQueue.poll();
+
+    System.out.println("   Serving: " + customer);
+    System.out.println("   Remaining in queue: " + customerQueue.size());
+}
+        
         System.out.println();
         
         // ========== SECTION 7: Queue Operations with Empty Queue ==========
@@ -111,6 +128,9 @@ public class QueueLab {
         // TODO: Test empty queue behavior
         // Use peek() on empty queue, store result in String variable called emptyPeek
         // Use poll() on empty queue, store result in String variable called emptyPoll
+        String emptyPeek = customerQueue.peek();
+
+        String emptyPoll = customerQueue.poll();
         
         System.out.println("   Peek on empty queue: " + emptyPeek);
         System.out.println("   Poll on empty queue: " + emptyPoll);
@@ -125,13 +145,23 @@ public class QueueLab {
         // customerQueue.offer("John");
         // customerQueue.offer("Jane");
         // customerQueue.offer("Jack");
-        
+        System.out.println("   Adding customers in order: John, Jane, Jack");
+
+customerQueue.offer("John");
+customerQueue.offer("Jane");
+customerQueue.offer("Jack");
         // System.out.println("   Queue: " + customerQueue);
         // System.out.println("   Serving in FIFO order:");
         // System.out.println("   First out: " + customerQueue.poll());
         // System.out.println("   Second out: " + customerQueue.poll());
         // System.out.println("   Third out: " + customerQueue.poll());
-        
+        System.out.println("   Queue: " + customerQueue);
+
+System.out.println("   Serving in FIFO order:");
+
+System.out.println("   First out: " + customerQueue.poll());
+System.out.println("   Second out: " + customerQueue.poll());
+System.out.println("   Third out: " + customerQueue.poll());
         System.out.println();
         
         // ========== SECTION 9: Summary ==========
