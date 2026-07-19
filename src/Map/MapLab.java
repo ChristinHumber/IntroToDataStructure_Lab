@@ -1,4 +1,7 @@
 
+
+package Map;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +46,13 @@ public class MapLab {
 
         // TODO: Create a Map with String keys and Integer values called wordFrequency
         // Use HashMap class as the implementation
+        
+        // I created a Map called wordFrequency and used HashMap as the implementation
+        //Each word will be stored as a key, while its frequency will be stored as the Integer value.
+        Map<String, Integer> wordFrequency = new HashMap<>();
+        
+        
+        
         System.out.println("   HashMap created successfully!");
         System.out.println("   Map size: " + wordFrequency.size());
         System.out.println("   Is empty: " + wordFrequency.isEmpty());
@@ -53,6 +63,16 @@ public class MapLab {
 
         // TODO: Split the text into words using split(" ") method
         // Store the result in a String array called words
+        
+        // I cleaned the text by converting it to lowercase, removing punctuation, and trimming whitespace.
+        String cleanedText = text.toLowerCase()
+                                 .replaceAll("[^a-z0-9\\s]", "")
+                                 .trim();
+
+        // I used split("\\s+") because the text contains both spaces and line breaks.
+        // This prevents blank elements from being added to the words array.
+        String[] words = cleanedText.split("\\s+");
+        
         System.out.println("   Total words found: " + words.length);
         System.out.println("   Words array: ");
         for (String word : words) {
@@ -69,6 +89,16 @@ public class MapLab {
         // 2. Put the word back with count + 1
         //  you can also Use the pattern: 
         // wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+        
+        
+        // I used a for-each loop to go through every word in the array
+        // getOrDefault() returns the current count, or 0 if the word has not already been added to the map
+        for (String word : words) {
+            wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+        }
+        
+        
+        
         System.out.println("   Word frequencies calculated!");
         System.out.println("   Map size: " + wordFrequency.size());
         System.out.println("   Current map: " + wordFrequency);
@@ -83,6 +113,15 @@ public class MapLab {
         // Get frequency of "java" using get() method, store in Integer variable javaCount
         // Get frequency of "unknown" using get() method, store in Integer variable unknownCount
         // Get frequency of "programming" using getOrDefault() method with default 0, store in Integer variable programmingCount
+        // I used get() to retrieve the frequency connected to the "java" key.
+        Integer javaCount = wordFrequency.get(searchWord);
+
+        // I used get() to retrieve the frequency connected to the "unknown" key
+        Integer unknownCount = wordFrequency.get("unknown");
+
+        // I used getOrDefault() so the program returns 0 instead of null if "programming" is not found
+        Integer programmingCount = wordFrequency.getOrDefault("programming", 0);
+        
         System.out.println("   Frequency of '" + searchWord + "': " + javaCount);
         System.out.println("   Frequency of 'unknown': " + unknownCount);
         System.out.println("   Frequency of 'programming' (using getOrDefault): " + programmingCount);
@@ -95,6 +134,16 @@ public class MapLab {
         // Check if map contains key "java" using containsKey(), store in boolean variable hasJava
         // Check if map contains value 5 using containsValue(), store in boolean variable hasCount5
         // Check if map contains value 2 using containsValue(), store in boolean variable hasCount2
+        
+        // I used containsKey() to check if "java" exists as a key in the map
+        boolean hasJava = wordFrequency.containsKey("java");
+
+        //I used containsValue() to check whether any word appears exactly five times
+        boolean hasCount5 = wordFrequency.containsValue(5);
+
+        // This checks whether any word appears exactly two times.
+        boolean hasCount2 = wordFrequency.containsValue(2);
+        
         System.out.println("   Contains key 'java': " + hasJava);
         System.out.println("   Contains value 5: " + hasCount5);
         System.out.println("   Contains value 2: " + hasCount2);
@@ -106,6 +155,9 @@ public class MapLab {
         System.out.println("   Before update - 'applications' frequency: " + wordFrequency.get("applications"));
 
         // TODO: Update the frequency of "fun" to 10 using put() method
+        //Updated "applications" to 10 so the before-and-after values match
+        wordFrequency.put("applications", 10);
+        
         System.out.println("   After update - 'applications' frequency: " + wordFrequency.get("applications"));
         System.out.println();
 
@@ -116,6 +168,12 @@ public class MapLab {
         // TODO: Create a for-each loop to iterate through keySet()
         // For each word in wordFrequency.keySet():
         // Print: "     '" + word + "' appears " + wordFrequency.get(word) + " times"
+        
+        //keySet() is used to get all the keys from the map. Each key is then used to retrieve its matching frequency.
+        for (String word : wordFrequency.keySet()) {
+            System.out.println("     '" + word + "' appears "
+                    + wordFrequency.get(word) + " times");
+        }
 
         System.out.println();
 
@@ -123,6 +181,15 @@ public class MapLab {
         // TODO: Create a for-each loop to iterate through entrySet()
         // For each Map.Entry<String, Integer> entry in wordFrequency.entrySet():
         // Print: "     '" + entry.getKey() + "' appears " + entry.getValue() + " times"
+        
+        //entrySet() is used to get all the key-value pairs from the map. Each entry contains both the word and its frequency.
+        for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
+            System.out.println("     '" + entry.getKey() + "' appears "
+                    + entry.getValue() + " times");
+        }
+
+        System.out.println();
+
 
         System.out.println();
 
@@ -130,20 +197,30 @@ public class MapLab {
         System.out.println("8. Finding most and least frequent words...");
 
         // TODO: Uncomment the code below to find extremes
-        // String mostFrequent = "";
-        // String leastFrequent = "";
-        // int maxCount = 0;
-        // int minCount = Integer.MAX_VALUE;
-        // for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
-        //     if (entry.getValue() > maxCount) {
-        //         maxCount = entry.getValue();
-        //         mostFrequent = entry.getKey();
-        //     }
-        //     if (entry.getValue() < minCount) {
-        //         minCount = entry.getValue();
-        //         leastFrequent = entry.getKey();
-        //     }
-        // }
+        
+        //Uncommented: I created variables to keep track of the words with the highest
+        // and lowest frequency while going through the map.
+        String mostFrequent = "";
+        String leastFrequent = "";
+        int maxCount = 0;
+        int minCount = Integer.MAX_VALUE;
+
+        // This loop compares each frequency with the current highest and lowest
+        // values, then updates the variables when necessary.
+        for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
+
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                mostFrequent = entry.getKey();
+            }
+
+            if (entry.getValue() < minCount) {
+                minCount = entry.getValue();
+                leastFrequent = entry.getKey();
+            }
+        }
+        
+        
         System.out.println("   Most frequent word: '" + mostFrequent + "' (" + maxCount + " times)");
         System.out.println("   Least frequent word: '" + leastFrequent + "' (" + minCount + " times)");
         System.out.println();
