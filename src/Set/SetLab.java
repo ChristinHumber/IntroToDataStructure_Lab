@@ -20,6 +20,7 @@ import java.util.Set;
  * 3. Complete the missing implementations where indicated
  * 4. Run the program and observe how sets handle unique elements
  */
+
 public class SetLab {
     
     public static void main(String[] args) {
@@ -29,8 +30,10 @@ public class SetLab {
         // ========== SECTION 1: Creating Sets for Each Subject ==========
         System.out.println("1. Creating sets for students who passed each exam...");
         
-        // TODO: Create three HashSet<String> variables:
-        // mathPassers, englishPassers, sciencePassers
+        // create three HashSets to hold passing students for each subject
+        HashSet<String> mathPassers = new HashSet<>();
+        HashSet<String> englishPassers = new HashSet<>();
+        HashSet<String> sciencePassers = new HashSet<>();
         
         System.out.println("   Three subject sets created!");
         System.out.println("   Math passers size: " + mathPassers.size());
@@ -41,14 +44,26 @@ public class SetLab {
         // ========== SECTION 2: Adding Students to Each Set ==========
         System.out.println("2. Adding students who passed each exam...");
         
-        // TODO: Add students to mathPassers using add() method
-        // Add: "Alice", "Bob", "Charlie", "Diana", "Eve"
+        // add students to mathPassers
+        mathPassers.add("Alice");
+        mathPassers.add("Bob");
+        mathPassers.add("Charlie");
+        mathPassers.add("Diana");
+        mathPassers.add("Eve");
         
-        // TODO: Add students to englishPassers using add() method
-        // Add: "Alice", "Bob", "Frank", "Grace", "Diana"
+        // add students to englishPassers
+        englishPassers.add("Alice");
+        englishPassers.add("Bob");
+        englishPassers.add("Frank");
+        englishPassers.add("Grace");
+        englishPassers.add("Diana");
         
-        // TODO: Add students to sciencePassers using add() method
-        // Add: "Charlie", "Diana", "Eve", "Frank", "Henry"
+        // add students to sciencePassers
+        sciencePassers.add("Charlie");
+        sciencePassers.add("Diana");
+        sciencePassers.add("Eve");
+        sciencePassers.add("Frank");
+        sciencePassers.add("Henry");
         
         System.out.println("   Students added to all sets!");
         System.out.println("   Math passers: " + mathPassers);
@@ -59,9 +74,9 @@ public class SetLab {
         // ========== SECTION 3: Testing Set Properties ==========
         System.out.println("3. Testing set properties and membership...");
         
-        // TODO: Test set membership
-        // Check if "Alice" is in mathPassers using contains(), store in boolean variable alicePassedMath
-        // Check if "John" is in englishPassers using contains(), store in boolean variable johnPassedEnglish
+        // check membership
+        boolean alicePassedMath = mathPassers.contains("Alice");
+        boolean johnPassedEnglish = englishPassers.contains("John");
         
         System.out.println("   Did Alice pass Math? " + alicePassedMath);
         System.out.println("   Did John pass English? " + johnPassedEnglish);
@@ -76,9 +91,9 @@ public class SetLab {
         System.out.println("   Before adding duplicate - Math passers: " + mathPassers);
         System.out.println("   Math passers size: " + mathPassers.size());
         
-        // TODO: Test duplicate handling
-        // Try adding "Alice" to mathPassers again, store result in boolean variable addedAlice
-        // Try adding "Zoe" to mathPassers, store result in boolean variable addedNewStudent
+        // try adding a duplicate and a new student
+        boolean addedAlice = mathPassers.add("Alice");
+        boolean addedNewStudent = mathPassers.add("Zoe");
         
         System.out.println("   Adding Alice again returned: " + addedAlice);
         System.out.println("   Adding Zoe returned: " + addedNewStudent);
@@ -89,10 +104,10 @@ public class SetLab {
         // ========== SECTION 5: Finding Students Who Passed All Three Exams ==========
         System.out.println("5. Finding students who passed ALL three exams (intersection)...");
         
-        // TODO: Find intersection (students who passed all three exams)
-        // Create a new HashSet<String> called allThreePassers, initialize it with mathPassers using new HashSet<>(mathPassers)
-        // Use retainAll() to keep only students who are also in englishPassers
-        // Use retainAll() again to keep only students who are also in sciencePassers
+        // intersection of all three sets
+        HashSet<String> allThreePassers = new HashSet<>(mathPassers);
+        allThreePassers.retainAll(englishPassers);
+        allThreePassers.retainAll(sciencePassers);
         
         System.out.println("   Students who passed all three exams: " + allThreePassers);
         System.out.println("   Number of students who passed all three: " + allThreePassers.size());
@@ -101,37 +116,39 @@ public class SetLab {
         // ========== SECTION 6: Finding Students Who Passed At Least One Exam ==========
         System.out.println("6. Finding students who passed AT LEAST one exam (union)...");
         
-        // TODO: Find union (students who passed at least one exam)
-        // Create a new HashSet<String> called atLeastOnePassers, initialize it with mathPassers using new HashSet<>(mathPassers)
-        // Use addAll() to add all students from englishPassers
-        // Use addAll() to add all students from sciencePassers
+        // union of all three sets
+        HashSet<String> atLeastOnePassers = new HashSet<>(mathPassers);
+        atLeastOnePassers.addAll(englishPassers);
+        atLeastOnePassers.addAll(sciencePassers);
         
         System.out.println("   Students who passed at least one exam: " + atLeastOnePassers);
         System.out.println("   Number of students who passed at least one: " + atLeastOnePassers.size());
         System.out.println();
         
-     
         // ========== SECTION 7:  Set Operations for Exactly Two ==========
         System.out.println("7.  Finding students who passed exactly two exams...");
         
-        // TODO: Implement this using set operations
-        // Create a new HashSet<String> called exactlyTwoPassers
-        // 
-        // Find students who passed only Math (Math - English - Science)
-        // Create HashSet<String> onlyMath, initialize with mathPassers
-        // Use removeAll() to remove englishPassers and sciencePassers
-        // 
-        // Find students who passed only English (English - Math - Science)
-        // Create HashSet<String> onlyEnglish, initialize with englishPassers
-        // Use removeAll() to remove mathPassers and sciencePassers
-        // 
-        // Find students who passed only Science (Science - Math - English)
-        // Create HashSet<String> onlyScience, initialize with sciencePassers
-        // Use removeAll() to remove mathPassers and englishPassers
-        // 
-        // Students who passed exactly 2 = all students - those who passed 0, 1, or 3
-        // Initialize exactlyTwoPassers with atLeastOnePassers
-        // Remove allThreePassers, onlyMath, onlyEnglish, and onlyScience
+        // students who passed only Math
+        HashSet<String> onlyMath = new HashSet<>(mathPassers);
+        onlyMath.removeAll(englishPassers);
+        onlyMath.removeAll(sciencePassers);
+        
+        // students who passed only English
+        HashSet<String> onlyEnglish = new HashSet<>(englishPassers);
+        onlyEnglish.removeAll(mathPassers);
+        onlyEnglish.removeAll(sciencePassers);
+        
+        // students who passed only Science
+        HashSet<String> onlyScience = new HashSet<>(sciencePassers);
+        onlyScience.removeAll(mathPassers);
+        onlyScience.removeAll(englishPassers);
+        
+        // students who passed exactly two = everyone minus those who passed 0, 1, or 3
+        HashSet<String> exactlyTwoPassers = new HashSet<>(atLeastOnePassers);
+        exactlyTwoPassers.removeAll(allThreePassers);
+        exactlyTwoPassers.removeAll(onlyMath);
+        exactlyTwoPassers.removeAll(onlyEnglish);
+        exactlyTwoPassers.removeAll(onlyScience);
         
         System.out.println(" Student who passed exactly 2 exams result: " + exactlyTwoPassers);
         System.out.println();
@@ -140,19 +157,14 @@ public class SetLab {
         System.out.println("9. Detailed analysis for each student...");
         
         System.out.println("   Individual student analysis:");
-        // TODO: Create a for-each loop to analyze each student
-        // For each student in atLeastOnePassers:
-        // Print the student name and which subjects they passed
-        // Use contains() to check each set
-        // Format: "   [Student] passed: [list of subjects]"
-        // Pattern: 
-        // for (String student : atLeastOnePassers) {
-        //     System.out.print("   " + student + " passed: ");
-        //     if (mathPassers.contains(student)) System.out.print("Math ");
-        //     if (englishPassers.contains(student)) System.out.print("English ");
-        //     if (sciencePassers.contains(student)) System.out.print("Science ");
-        //     System.out.println();
-        // }
+        // loop through each student and print which subjects they passed
+        for (String student : atLeastOnePassers) {
+            System.out.print("   " + student + " passed: ");
+            if (mathPassers.contains(student)) System.out.print("Math ");
+            if (englishPassers.contains(student)) System.out.print("English ");
+            if (sciencePassers.contains(student)) System.out.print("Science ");
+            System.out.println();
+        }
         
         System.out.println();
         
@@ -172,10 +184,10 @@ public class SetLab {
         // ========== SECTION 11: Removing Students (Demonstrating remove operations) ==========
         System.out.println("11. Demonstrating remove operations...");
         
-        // TODO: Test remove operations
-        // Create a HashSet<String> called testSet, initialize it with mathPassers
-        // Use remove() to remove "Alice", store result in boolean variable removed
-        // Try to remove "Alice" again, store result in boolean variable removedAgain
+        // test set for remove operations
+        HashSet<String> testSet = new HashSet<>(mathPassers);
+        boolean removed = testSet.remove("Alice");
+        boolean removedAgain = testSet.remove("Alice");
         
         System.out.println("   Test set before removal: " + testSet);
         System.out.println("   Removed Alice: " + removed);
@@ -187,9 +199,8 @@ public class SetLab {
         // ========== SECTION 12: Final Statistics ==========
         System.out.println("12. Final statistics...");
         
-        // TODO: Calculate students who passed exactly one exam
-        // Calculate this as: atLeastOnePassers.size() - allThreePassers.size() - exactlyTwoPassers.size()
-        // Store in int variable exactlyOneCount
+        // students who passed exactly one exam
+        int exactlyOneCount = atLeastOnePassers.size() - allThreePassers.size() - exactlyTwoPassers.size();
         
         System.out.println("   Total unique students: " + atLeastOnePassers.size());
         System.out.println("   Students who passed all three: " + allThreePassers.size());
