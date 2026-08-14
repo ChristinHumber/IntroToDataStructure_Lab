@@ -19,6 +19,7 @@ import java.util.List;
  * 3. Fill in any missing variable names or method calls
  * 4. Run the program and observe the output
  */
+
 public class ListLab {
     
     public static void main(String[] args) {
@@ -27,8 +28,8 @@ public class ListLab {
         // ========== SECTION 1: Creating and Initializing the List ==========
         System.out.println("1. Creating a new to-do list...");
         
-        // TODO: Create a list of String call it todoList, use ArrayList class as the implementation
-
+        // create a list of String called todoList, using ArrayList as the implementation
+        List<String> todoList = new ArrayList<>();
         
         System.out.println("   Empty list created successfully!");
         System.out.println("   List size: " + todoList.size());
@@ -38,11 +39,11 @@ public class ListLab {
         // ========== SECTION 2: Adding Tasks to the List ==========
         System.out.println("2. Adding tasks to our to-do list...");
         
-        // TODO: Uncomment the lines below to add tasks and add 4 more tasks to our to do list
-        // todoList.add("Buy groceries");
-        // todoList.add("Walk the dog");
-        // todoList.add("Study for exam");
-        // todoList.add("Call mom");
+        // add tasks to the list
+        todoList.add("Buy groceries");
+        todoList.add("Walk the dog");
+        todoList.add("Study for exam");
+        todoList.add("Call mom");
         
         System.out.println("   Tasks added successfully!");
         System.out.println("   List size: " + todoList.size());
@@ -52,11 +53,9 @@ public class ListLab {
         // ========== SECTION 3: Accessing Specific Tasks ==========
         System.out.println("3. Accessing specific tasks...");
         
-        /// TODO: 
-        //accessing the first element use the method get(int index) or getFirst() save it in the variable firstTask
-    
-        //accessing the last element use the method get(int index) or getLast() save it in the variable lastTask
-        
+        // get the first task and the last task
+        String firstTask = todoList.get(0);
+        String lastTask = todoList.get(todoList.size() - 1);
         
         System.out.println("   First task: " + firstTask);
         System.out.println("   Last task: " + lastTask);
@@ -66,8 +65,8 @@ public class ListLab {
         // ========== SECTION 4: Inserting a Priority Task ==========
         System.out.println("4. Inserting a priority task at the beginning...");
         
-        // TODO: insert task called "URGENT: Submit assignment" at index 0 use method add(int index, String s)
-  
+        // insert a priority task at index 0
+        todoList.add(0, "URGENT: Submit assignment");
         
         System.out.println("   Priority task inserted!");
         System.out.println("   Updated list: " + todoList);
@@ -79,10 +78,11 @@ public class ListLab {
         
         String searchTask = "Walk the dog";
         
-        // TODO:  search if the list contains searchTask, store that boolean value into a variable called containsTask
-
-        // TODO: Uncomment the line below to find the index of the task we're searching
-        // int taskIndex = todoList.indexOf(searchTask);
+        // check if the list contains the task
+        boolean containsTask = todoList.contains(searchTask);
+        
+        // find the index of the task
+        int taskIndex = todoList.indexOf(searchTask);
         
         System.out.println("   Does list contain '" + searchTask + "'? " + containsTask);
         System.out.println("   Index of '" + searchTask + "': " + taskIndex);
@@ -93,15 +93,13 @@ public class ListLab {
         
         System.out.println("   Before completing tasks: " + todoList);
         
-        // TODO: 
-        // Remove by index (completing the first task) using 
-        // the remove(int index) method, save it in a String  variable --> completedTask
+        // remove by index (completing the first task)
+        String completedTask = todoList.remove(0);
         
-        // TODO: Remove by value (completing "Walk the dog") by using the remove(String value) method
-        // Save it in a boolean variable called removed
+        // remove by value (completing "Walk the dog")
+        boolean removed = todoList.remove("Walk the dog");
         
-        
-        //NOTE: remove(int index) returns a string while remove(String value) returns a bool value
+        // NOTE: remove(int index) returns a String while remove(String value) returns a boolean
         
         System.out.println("   Completed task: " + completedTask);
         System.out.println("   Successfully removed 'Walk the dog': " + removed);
@@ -112,8 +110,10 @@ public class ListLab {
         // ========== SECTION 7: Iterating Through Remaining Tasks ==========
         System.out.println("7. Displaying all remaining tasks...");
         
-        // TODO: Use a for each loop to print all the remaining tasks
-
+        // for each loop to print all remaining tasks
+        for (String task : todoList) {
+            System.out.println("   - " + task);
+        }
         
         System.out.println();
         
